@@ -1,0 +1,11 @@
+:local emailAddress "your@email.com"
+
+/system package update
+set channel=stable
+check-for-updates
+
+:if ([get installed-version] != [get latest-version]) do={
+:log info "A new software update is available. Sending email..."
+
+/tool e-mail send to="$emailAddress" subject="[Mikrotik] Software Update Available" body="A new update is available for your MikroTik device"
+}
